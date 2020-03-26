@@ -45,5 +45,5 @@ class MyCorpus(object):
 
 corpus = MyCorpus()
 # Save corpus as a line_sentence for a word2vec model to be made from
-utils.save_as_line_sentence(corpus, "../Git/RC_2019-09-news.txt")
+utils.save_as_line_sentence(corpus, r"C:\Users\Eric\Documents\COG 403\Project\Reddit\Data\Comments\RC_2019-09-news.txt")
 
