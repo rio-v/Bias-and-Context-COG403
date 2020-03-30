@@ -1,8 +1,9 @@
 import gensim
 
 # Select which corpus file to the build model from
-corpus = r'RC_2019-09-mil.txt'
+corpus = r'C:\Users\Eric\Documents\COG 403\Project\Reddit\Data\CNN\cnn_corpus.txt'
 # Build model from corpus
-model = gensim.models.Word2Vec(corpus_file=corpus, size=300)
+model = gensim.models.Word2Vec(corpus_file=corpus, size=250)
 # Save model
-model.save("word2vec-mil-second.model")
+model.save(r'C:\Users\Eric\Documents\COG 403\Project\Reddit\git\News\CNN\word2vec-cnn.model')
+print(len(model.wv.vocab))
