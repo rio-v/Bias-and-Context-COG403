@@ -1,21 +1,7 @@
 % 
-% Annual Cognitive Science Conference
+% COG403 - Bias and Context - Report
 % Sample LaTeX Paper -- Proceedings Format
 % 
-
-% Original : Ashwin Ram (ashwin@cc.gatech.edu)       04/01/1994
-% Modified : Johanna Moore (jmoore@cs.pitt.edu)      03/17/1995
-% Modified : David Noelle (noelle@ucsd.edu)          03/15/1996
-% Modified : Pat Langley (langley@cs.stanford.edu)   01/26/1997
-% Latex2e corrections by Ramin Charles Nakisa        01/28/1997 
-% Modified : Tina Eliassi-Rad (eliassi@cs.wisc.edu)  01/31/1998
-% Modified : Trisha Yannuzzi (trisha@ircs.upenn.edu) 12/28/1999 (in process)
-% Modified : Mary Ellen Foster (M.E.Foster@ed.ac.uk) 12/11/2000
-% Modified : Ken Forbus                              01/23/2004
-% Modified : Eli M. Silk (esilk@pitt.edu)            05/24/2005
-% Modified : Niels Taatgen (taatgen@cmu.edu)         10/24/2006
-% Modified : David Noelle (dnoelle@ucmerced.edu)     11/19/2014
-% Modified : Roger Levy (rplevy@mit.edu)     12/31/2018
 
 
 
@@ -25,7 +11,7 @@
 
 \usepackage{cogsci}
 
-%\cogscifinalcopy % Uncomment this line for the final submission 
+\cogscifinalcopy % Uncomment this line for the final submission 
 
 
 \usepackage{pslatex}
@@ -50,14 +36,11 @@
 
 
 
-\title{How to Make a Proceedings Paper Submission}
+\title{Bias and Context: Using Word Embeddings to Compare Word Use Across Contexts}
  
-\author{{\large \bf Morton Ann Gernsbacher (MAG@Macc.Wisc.Edu)} \\
-  Department of Psychology, 1202 W. Johnson Street \\
-  Madison, WI 53706 USA
-  \AND {\large \bf Sharon J.~Derry (SDJ@Macc.Wisc.Edu)} \\
-  Department of Educational Psychology, 1025 W. Johnson Street \\
-  Madison, WI 53706 USA}
+\author{{\large \bf Eric Schnell} \\
+  
+  \AND {\large \bf Ariyo Vahdat} \\}
 
 
 \begin{document}
@@ -85,7 +68,7 @@ semicolon; between each term
 
 \subsection{Word Embeddings}
 
-The study utilized 250-dimensional word embeddings, trained using the word2vec algorithm operationalized by the gensim package for Python 3. They were trained using gensim’s default parameters. Notably the window size for training was 5, each word needed to be more than one letter long, and each word needed to appear at least 5 times to be included in the model.
+The study utilized 250-dimensional word embeddings, trained using the word2vec algorithm operationalized by the gensim package for Python 3. They were trained using gensim’s default parameters. Notably the window size for training was 5, each word needed to be more than one letter long, and each word needed to appear at least 5 times to be included in the model. We trained six word embedding models using datasets of various contexts and discussing various topics.
 
 \subsection{Datasets}
 
@@ -121,6 +104,28 @@ Daily Mail & 58 031   & 35 000 381  & 79 159       \\
 \subsection{Analysis}
 
 TYPE HERE
+
+\section{Results}
+
+\section{Discussion}
+
+First, we will examine the role of context on bias in our results. The results show a significant bias in all datasets for the career versus family gender bias test. Furthermore, all reddit comments of 2014 and 2019, as well news reddit comments of 2014, CNN and the Daily Mail all show a very significant effect with p < 0.005. A significant gender bias is only found for one other test and it is found in one casual context dataset and one formal context dataset. For WEAT values, gender bias appears to be more prevalent in the formal context. However, with regards to the p value, it appears that context plays no significant effect on gender bias, as when a significant bias is present, the p value of casual and formal contexts are quite similar. With respect to racial bias, this bias only arises in the formal context. Overall it appears that bias is more prevalent in a formal context rather than a casual one, which is the opposite of our predicted hypothesis.
+
+It must also be noted that there is a conflicting effect of formality of topic on bias. In the case of gender bias, where there was significant bias, the casual topic Reddit data had more bias than the formal topic Reddit data. Whereas the formal topic news data had more bias in the career versus family test, but less bias in the math versus arts test. With respect to racial bias the formal news topic had more bias than the casual news topic. So, there are conflicting effects of topic formality on bias and thus this topic formality does not appear to play a role in bias.
+
+To understand why the results go against our hypothesis, we must look at the most significant issue with our word embeddings, that being the size of the corpus with which we trained our word embeddings. According to \citeA{Lai2016a}, when working with corpuses which focus on a specific domain, the larger the corpus the better. Notably they found that corpuses built from over 1 billion words performed much better than ones of 100 million words. In our case we had a significantly smaller corpus of just roughly 35 million words each. Another issue may have been the dimensionality of our corpus. In the relevant literature concerning bias in word embeddings, word embeddings are typically either 200 \cite{Kozlowski2019a} or 300 \cite{Caliskan2017a} dimensional vectors. Our thinking was to split the difference and use 250-dimensional vectors. However, these papers used much larger corpuses to build their embeddings, and thus a higher dimensionality was required. It could be that the dimensionality we used was too large given our corpus size, and that we should have rather made 200-dimensional or even 100-dimensional word embeddings. However, the clearer issue is that of our corpus size.
+
+This issue of corpus size not only suggests that our results are not representative of true bias, but it may also suggest why we found more bias in the formal context. News sites follow major stories over large periods of time and write many articles about the same story. They also cover many similar stories and each story is considerably longer than the average reddit comment. As such the corpus is much more focused for news sites than for Reddit, which in turn means that the word embedding will more accurately reflect trends in the data and can more easily pick up on any bias in the data. Seeing as Reddit will have a more varied focus, especially when taking comments from all subreddits, it is more difficult for our word embeddings to accurately characterize the corpus. This issue becomes even more severe considering the small corpus sizes used. Comparatively the focused corpus of news sites leads to more accurate word embeddings which make bias more noticeable.
+
+Another possibility is that Reddit is simply less biased than news sites. The lack of barrier to entry on Reddit may make it more diverse and representative of varied viewpoints. It could mean that there is less bias overall as biased individuals are countered by ones who hold opposite viewpoints. On the other hand, articles on the Daily Mail and CNN are all written by journalists. Seeing as these organisations do not release such details about their journalists, it is impossible to know for sure the backgrounds and educations of all the journalists, but it can be safely assumed that they are mostly college-educated. This means they are bringing specific backgrounds, not shared by all, into their writing. As such journalists may reinforce biases innate to the craft that may not be found on a more open platform such as Reddit. In this sense then we are not comparing whether people are more likely to use biased language in a casual rather than a formal context, but rather we are comparing the bias amongst two specific populations. Rather we would want to compare bias across context for the same group of speakers. Reddit may simply be less biased than the news, but this does not answer whether bias is stronger in a casual or formal context.
+
+On top of the issues with corpus size, the corpus selection could also have impacted the results. Seeing as we built word embeddings for each separate corpus, there may have been other factors built into these corpuses that impact bias but have nothing to do with context. The most obvious of these is political alignment. Three of our four types of datasets discuss politics and the news and so the political alignment found in each of these datasets will be significant in how it is discussed. CNN and the popular political subreddits are considered left-leaning, whereas the Daily Mail is considered right-leaning. These political leanings could have impacted the bias of the corpus while circumnavigating the context of the discussion.
+
+The tests used may have swayed our results. It seems clear that our models do have some level of bias which can be found, seeing as for one test this bias was overwhelming. However, it may be that the other tests were incorrectly chosen to truly study bias. We selected attribute words and target words as found in \citeA{Caliskan2017a} and \citeA{Garg2018a}, and so we had assumed that this meant that these were reliable tests. Of our tests, only the career versus family gender bias test had results similar to that found in the original paper. For this test, \citeA{Caliskan2017a} had a distance score of 1.89, which is similar to some of the results we had, notably for the Daily Mail and CNN datasets at 1.96 and 1.82 respectively. In our other gender bias tests that found a significant bias, the scores were quite distant from that in \citeA{Caliskan2017a}. As for racial bias, the paper by \citeA{Garg2018a} from which we took our attribute words did not use the WEAT test so we cannot directly compare our results to theirs. The question now becomes, how come we got such similar results to one test, but for none others? It could be that we overestimated the accuracy of the original tests and instead we should have taken tests from more papers as well as creating our own tests. It could also be an issue of corpus size. The career versus family test had the largest WEAT score by a considerable margin in \citeA{Caliskan2017a}. This bias towards women with regards to career versus family is also well documented in other word embedding literature \cite{Bolukbasi2016a}. As such it would appear to be the easiest bias for our model to uncover. So, with models built from small corpuses, this is the test that is most likely to return a significant bias. Seeing as we know at least one WEAT test can successfully uncover bias, it could be that with models built from larger corpuses the other tests would have also uncovered a significant bias. Regardless, the tests that we chose could have impacted the sort of results we found.
+
+\section{Conclusion}
+
+We failed to prove our hypothesis that a more casual context would promote more bias in conversation. In fact, we found there to be very little bias in our various corpuses and when bias was uncovered it appeared stronger in the formal context than in the casual context. We attempted to prove this using word embeddings, specifically word2vec, and we suspect that our results were negatively impacted by the fact that these embeddings were trained on very small corpuses. We still believe that our hypothesis is plausible, however in the future it would need to be tested on larger corpuses of text. It would also be good to draw our corpuses from more varied sources and to use more test cases. If the hypothesis were to be proven, an interesting next study could be to compare bias in spoken versus written text, again using word embeddings where the word embeddings for spoken texts would be built on their transcription. This would look at whether the fact that written text can be deliberated on longer means that bias would be more likely to be eliminated. However, before moving onto this project it is important to further study the role of context in bias. Although the results found do not align with the hypothesis, we are still hopeful that by using larger corpuses we could eliminate many of the faults of the current study and in fact prove the hypothesis.
 
 \section{General Formatting Instructions}
 
@@ -269,15 +274,11 @@ by 1/8~inch. Below are example references for a conference paper, book
 chapter, journal article, dissertation, book, technical report, and
 edited volume, respectively.
 
-\nocite{ChalnickBillman1988a}
-\nocite{Feigenbaum1963a}
-\nocite{Hill1983a}
-\nocite{OhlssonLangley1985a}
-% \nocite{Lewis1978a}
-\nocite{Matlock2001}
-\nocite{NewellSimon1972a}
-\nocite{ShragerLangley1990a}
-
+\nocite{Garg2018a}
+\nocite{Caliskan2017a}
+\nocite{Lai2016a}
+\nocite{Kozlowski2019a}
+\nocite{Bolukbasi2016a}
 
 \bibliographystyle{apacite}
 
